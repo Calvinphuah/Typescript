@@ -1,6 +1,16 @@
 "use strict";
-function addAllNumbers(items) {
-    const total = items.reduce((a, b) => a + b);
-    console.log(total);
+function printPosts(posts) {
+  for (let post of posts) {
+    console.log(post.title);
+    console.log(post.body);
+    console.log(post.id);
+  }
 }
-addAllNumbers([1, 2, 3]);
+const posts = [
+  {
+    title: "Hello World",
+    body: "This is the body",
+    id: 1,
+  },
+];
+printPosts(posts);
