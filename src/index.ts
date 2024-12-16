@@ -73,8 +73,49 @@ type Id = number | string;
 type Base = "classic" | "thick" | "thin" | "garlic";
 
 // Classes
-// class Pizza {
-//   title: string;
-//   price: number;
-//   base;
+class MenuItem {
+  constructor(private title: string, private price: number) {}
+
+  get details(): string {
+    return `${this.title} -$${this.price}`;
+  }
+}
+
+class Pizza extends MenuItem {
+  constructor(title: string, price: number) {
+    super(title, price);
+  }
+
+  private base: Base = "classic";
+  private toppings: string[] = [];
+
+  addTopping(topping: string): void {
+    this.toppings.push(topping);
+  }
+  removeTopping(topping: string): void {
+    this.toppings = this.toppings.filter((t) => t !== topping);
+  }
+  selectBase(base: Base): void {
+    this.base = base;
+  }
+}
+
+const pizza = new Pizza("mario special", 15);
+
+// console.log("pizza", pizza);
+
+// function addMushroomToPizza(pizzas: Pizza[]): void {
+//   for (const pizza of pizzas) {
+//     pizza.addTopping("mushrooms");
+//   }
 // }
+
+// addMushroomToPizza([pizza]);
+
+// console.log("pizza", pizza);
+
+function printMenuItem(item: MenuItem): void {
+  console.log(item.details);
+}
+
+printMenuItem(pizza);

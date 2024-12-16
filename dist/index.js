@@ -1,16 +1,40 @@
 "use strict";
-function printPosts(posts) {
-  for (let post of posts) {
-    console.log(post.title);
-    console.log(post.body);
-    console.log(post.id);
-  }
+// Classes
+class MenuItem {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
+    get details() {
+        return `${this.title} -$${this.price}`;
+    }
 }
-const posts = [
-  {
-    title: "Hello World",
-    body: "This is the body",
-    id: 1,
-  },
-];
-printPosts(posts);
+class Pizza extends MenuItem {
+    constructor(title, price) {
+        super(title, price);
+        this.base = "classic";
+        this.toppings = [];
+    }
+    addTopping(topping) {
+        this.toppings.push(topping);
+    }
+    removeTopping(topping) {
+        this.toppings = this.toppings.filter((t) => t !== topping);
+    }
+    selectBase(base) {
+        this.base = base;
+    }
+}
+const pizza = new Pizza("mario special", 15);
+// console.log("pizza", pizza);
+// function addMushroomToPizza(pizzas: Pizza[]): void {
+//   for (const pizza of pizzas) {
+//     pizza.addTopping("mushrooms");
+//   }
+// }
+// addMushroomToPizza([pizza]);
+// console.log("pizza", pizza);
+function printMenuItem(item) {
+    console.log(item.details);
+}
+printMenuItem(pizza);
