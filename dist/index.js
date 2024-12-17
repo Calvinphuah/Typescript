@@ -24,19 +24,6 @@ class Pizza extends MenuItem {
     selectBase(base) {
         this.base = base;
     }
-    format() {
-        let formatted = this.details + "\n";
-        // base
-        formatted += `Pizza on a ${this.base} base`;
-        // toppings
-        if (this.toppings.length < 1) {
-            formatted += `with no toppings`;
-        }
-        if (this.toppings.length > 0) {
-            formatted += ` with ${this.toppings.join(", ")}`;
-        }
-        return formatted;
-    }
 }
 const pizza = new Pizza("mario special", 15);
 // console.log("pizza", pizza);
@@ -47,7 +34,7 @@ const pizza = new Pizza("mario special", 15);
 // }
 // addMushroomToPizza([pizza]);
 // console.log("pizza", pizza);
-// function printMenuItem(item: MenuItem): void {
-//   console.log(item.details);
-// }
-// printMenuItem(pizza);
+function printMenuItem(item) {
+    console.log(item.details);
+}
+printMenuItem(pizza);

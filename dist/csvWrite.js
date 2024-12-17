@@ -1,10 +1,17 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // CSV Writer Project
+const fs_1 = require("fs");
 class CSVWriter {
     constructor(columns) {
         this.columns = columns;
         // Header row
         this.csv = this.columns.join(",") + "\n";
+    }
+    save(filename) {
+        // everytime we call it it just appends the data to that file name
+        (0, fs_1.appendFileSync)(filename, this.csv);
+        this.csv = "\n"; // Reset
     }
     addRows(values) {
         const rows = values.map((value) => this.formatRow(value));
@@ -24,3 +31,4 @@ writer.addRows([
     { id: 2, amount: 75, to: "bowser", notes: "something" },
     { id: 3, amount: 100, to: "luigi", notes: "something else" },
 ]);
+writer.save("./data/payments.csv");

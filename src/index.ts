@@ -73,14 +73,12 @@ type Id = number | string;
 type Base = "classic" | "thick" | "thin" | "garlic";
 
 // Classes
-abstract class MenuItem {
+class MenuItem {
   constructor(private title: string, private price: number) {}
 
   get details(): string {
     return `${this.title} -$${this.price}`;
   }
-
-  abstract format(): string;
 }
 
 class Pizza extends MenuItem {
@@ -100,23 +98,6 @@ class Pizza extends MenuItem {
   selectBase(base: Base): void {
     this.base = base;
   }
-
-  format(): string {
-    let formatted = this.details + "\n";
-
-    // base
-    formatted += `Pizza on a ${this.base} base`;
-
-    // toppings
-    if (this.toppings.length < 1) {
-      formatted += `with no toppings`;
-    }
-    if (this.toppings.length > 0) {
-      formatted += ` with ${this.toppings.join(", ")}`;
-    }
-
-    return formatted;
-  }
 }
 
 const pizza = new Pizza("mario special", 15);
@@ -133,8 +114,8 @@ const pizza = new Pizza("mario special", 15);
 
 // console.log("pizza", pizza);
 
-// function printMenuItem(item: MenuItem): void {
-//   console.log(item.details);
-// }
+function printMenuItem(item: MenuItem): void {
+  console.log(item.details);
+}
 
-// printMenuItem(pizza);
+printMenuItem(pizza);

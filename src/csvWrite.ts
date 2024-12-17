@@ -1,4 +1,5 @@
 // CSV Writer Project
+import { appendFileSync } from "fs";
 
 interface Payment {
   id: number;
@@ -17,6 +18,12 @@ class CSVWriter {
 
   // string format of all diff rows
   private csv: string;
+
+  save(filename: string): void {
+    // everytime we call it it just appends the data to that file name
+    appendFileSync(filename, this.csv);
+    this.csv = "\n"; // Reset
+  }
 
   addRows(values: Payment[]): void {
     const rows = values.map((value) => this.formatRow(value));
@@ -39,3 +46,5 @@ writer.addRows([
   { id: 2, amount: 75, to: "bowser", notes: "something" },
   { id: 3, amount: 100, to: "luigi", notes: "something else" },
 ]);
+
+writer.save("./data/payments.csv");
